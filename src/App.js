@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Stepper from "./Components/Stepper";
-
+import Header from "./Components/Header";
 import Account from "./Components/steps/Account";
 import Detail from "./Components/steps/Detail";
 import Complete from "./Components/steps/Complete";
@@ -11,6 +11,7 @@ import {
 } from "./contexts/StepperContext";
 import "./App.css";
 import Additional from "./Components/steps/Additional";
+import Footer from "./Components/Footer";
 
 function App() {
   const [currentStep, setCurrentStep] = useState(1);
@@ -56,10 +57,26 @@ function App() {
     }
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     // Access userData and childData here and perform your logic
-      console.log("Submitting data:", allData);
+    //console.log(allData);
+    try {
+      const response = await fetch('https://pssapi.net:444/postuser/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(allData),
+      });
 
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      //console.log('Data submitted successfully');
+    } catch (error) {
+      //console.error('Error submitting data:', error.message);
+    }
+      //console.log("Submitting data:", allData);
   }
 
 
@@ -100,7 +117,12 @@ function App() {
   };
 
   return (
-    <div className="mx-auto rounded-2xl bg-white pb-2 shadow-xl md:w-1/2 stepper-container">
+    <div  className="flex flex-col min-h-screen m-0 p-0">  
+      <div>
+      <Header/>
+      </div>    
+
+    <div className="flex-1 mx-auto rounded-2xl bg-white pb-2 shadow-xl md:w-1/2 stepper-container my-10">
       {/* Stepper */}
       <div className="horizontal container mt-5 ">
         <Stepper steps={steps} currentStep={currentStep} />
@@ -119,6 +141,12 @@ function App() {
           steps={steps}
         />
       )}
+    </div>
+
+    <div className="mt-auto">
+    <Footer />
+    </div>
+
     </div>
   );
 }

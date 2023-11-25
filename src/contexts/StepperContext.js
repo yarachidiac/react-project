@@ -3,7 +3,7 @@ import React, { createContext, useContext, useState } from "react";
 const StepperContext = createContext({
   userData: {
     // Other initial values...
-    "عدد الأولاد": 0,
+    "child number": 0,
   },
   setUserData: null,
   childData: [],
@@ -13,7 +13,7 @@ const StepperContext = createContext({
 export function UseContextProvider({ children }) {
   const [userData, setUserData] = useState({
     // Other initial values...
-    "عدد الأولاد": 0,
+    "child number": 0,
   });
   const [childData, setChildData] = useState([]);
 

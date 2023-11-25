@@ -29,7 +29,8 @@ export default function Complete() {
         <div className="text-lg font-semibold text-gray-500">
           تم إنشاء حسابك.
         </div>
-        <a className="mt-10" href="/user/dashboard">
+        <a className="mt-10" href="/forminfo/badrfoundation/"
+>
           <button className="h-10 px-5 text-green-700 transition-colors duration-150 border border-gray-300 rounded-lg focus:shadow-outline hover:bg-green-500 hover:text-green-100">
             إغلاق
           </button>
